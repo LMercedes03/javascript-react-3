@@ -20,6 +20,8 @@ export const DrinkPage = () => {
                         <Image width='800px' rounded={true} fluid={true} src='tea.jpg' alt='tea' />
                         <br /><br />
                         <Image width='800px' rounded={true} fluid={true} src='lemonade.jpg' alt='lemonade' />
+                        <br /><br />
+                        <Image width='800px' rounded={true} fluid={true} src='milk.jpg' alt='milk' />
                     </div>
                 </div>
             </div>
