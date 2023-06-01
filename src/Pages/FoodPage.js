@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'react-bootstrap/Image'
+import { FoodsTable } from '../FoodsTable'
 import './FoodPage.scss'
 
 export const FoodPage = () => {
@@ -10,7 +11,7 @@ export const FoodPage = () => {
                 Food 
             </div>
             <div className='FoodPage_Content'>
-                    <FoodTable />
+                    <FoodsTable />
                 </div>
                 <div className='FoodPage_Content'>
                     <div className='FoodPage_Pix'>

@@ -31,3 +31,30 @@ export const drinkPrices = [
 export const getPriceForDrink = (type) => {
     return drinkPrices.find(p => p.type === type).price
 }
+
+export const foodPrices = [
+    { 
+        id: 1,
+        type: "croissant",
+        price: 2.00 
+    },
+    { 
+        id: 2,
+        type: "muffin",
+        price: 3.00 
+    },
+    { 
+        id: 3,
+        type: "cookie",
+        price: 1.00 
+    },
+    { 
+        id: 4,
+        type: "maccaron",
+        price: 4.00 
+    }
+]
+
+export const getPriceForFood = (type) => {
+    return foodPrices.find(p => p.type === type).price
+}
