@@ -28,7 +28,7 @@ export const FoodsTable = () => {
                                 key={ i.id }
                                 item={ i.type }
                                 displayName={ capitalize(i.type) }
-                                theOrderedDrinks={ theOrderedFoods } 
+                                theOrderedFoods={ theOrderedFoods } 
                                 onHandleClick={ (item, value) => onHandleClick(item, value) }
                             />
                         })

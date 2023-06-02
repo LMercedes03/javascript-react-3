@@ -9,65 +9,128 @@
 //       altering the cost of the product.
 //
 
-import { getPriceForDrink } from './App.Config'
+import { getPriceForDrink, getPriceForFood, getPriceForDessert } from './App.Config';
 
-/**
- * @param {*} drinks 
- * @returns An array of objects that the customer has ordered.
- *  [
-      { 
-        item: 'tea', 
-        qty: 1, 
-        price: 2, 
-        subTotal: 2
-      }
-    ] 
- */
 export const buildOrder = (drinks) => {
-    let total = 0
-    let arrayOfDrinks = Object.keys(drinks)
+  let total = 0
+  let arrayOfDrinks = Object.keys(drinks)
 
-    const arrayOfDrinkObjects = arrayOfDrinks.map(i => {
-        return {
-            item: i,
-            qty: drinks[i]
-        }
-    })
+  const arrayOfDrinkObjects = arrayOfDrinks.map(i => {
+      return {
+          item: i,
+          qty: drinks[i]
+      }
+  })
 
-    const allItems = arrayOfDrinkObjects.map(i => {
-        total += i.qty * getPriceForDrink(i.item)
-        return {
-            ...i,
-            price: getPriceForDrink(i.item),
-            subTotal: i.qty * getPriceForDrink(i.item)
-        }
-    })
+  const allItems = arrayOfDrinkObjects.map(i => {
+      total += i.qty * getPriceForDrink(i.item)
+      return {
+          ...i,
+          price: getPriceForDrink(i.item),
+          subTotal: i.qty * getPriceForDrink(i.item)
+      }
+  })
 
-    const order = allItems.filter(i => i.qty > 0)
+  const order = allItems.filter(i => i.qty > 0)
 
-    return {
-        order,
-        total
-    }
+  return {
+      order,
+      total
+  }
 }
 
+export const buildFoodOrder = (foods) => {
+  let total = 0
+  let arrayOfFoods = Object.keys(foods)
+
+  const arrayOfFoodObjects = arrayOfFoods.map(i => {
+      return {
+          item: i,
+          qty: foods[i]
+      }
+  })
+
+  const allItems = arrayOfFoodObjects.map(i => {
+      total += i.qty * getPriceForFood(i.item)
+      return {
+          ...i,
+          price: getPriceForFood(i.item),
+          subTotal: i.qty * getPriceForFood(i.item)
+      }
+  })
+
+  const order = allItems.filter(i => i.qty > 0)
+
+  return {
+      order,
+      total
+  }
+}
+
+export const buildDessertOrder = (desserts) => {
+  let total = 0
+  let arrayOfDesserts = Object.keys(desserts)
+
+  const arrayOfDessertObjects = arrayOfDesserts.map(i => {
+      return {
+          item: i,
+          qty: desserts[i]
+      }
+  })
+
+  const allItems = arrayOfDessertObjects.map(i => {
+      total += i.qty * getPriceForDessert(i.item)
+      return {
+          ...i,
+          price: getPriceForDessert(i.item),
+          subTotal: i.qty * getPriceForDessert(i.item)
+      }
+  })
+
+  const order = allItems.filter(i => i.qty > 0)
+
+  return {
+      order,
+      total
+  }
+}
+
+
 /**
- * @param {*} orders 
- * @returns The total amount of all the orders.
- */
+* @param {*} orders 
+* @returns The total amount of all the orders.
+*/
 export const calcTotalForAllOrders = (orders) => {
-    return (orders) ? orders.map(i => i.total).reduce((a,b)=> a + b, 0) : 0
+  return (orders) ? orders.map(i => i.total).reduce((a,b)=> a + b, 0) : 0
 }
 
 /**
- * @param {} drinks 
- * @returns The total number of drinks the customer has ordered.
- */
+* @param {} drinks 
+* @returns The total number of drinks the customer has ordered.
+*/
 export const getTotalNumberDrinks = (drinks) => {
-    let totalDrinks = 0
-    const arrayOfDrinks = Object.keys(drinks)
-    arrayOfDrinks.forEach(i => {
-        totalDrinks += drinks[i]
-    })
-    return totalDrinks
+  let totalDrinks = 0
+  const arrayOfDrinks = Object.keys(drinks)
+  arrayOfDrinks.forEach(i => {
+      totalDrinks += drinks[i]
+  })
+  return totalDrinks
+}
+
+export const getTotalNumberFoods = (foods) => {
+  let totalFoods = 0
+  const arrayOfFoods = Object.keys(foods)
+  arrayOfFoods.forEach(i => {
+      totalFoods += foods[i]
+  })
+  return totalFoods
+}
+
+export const getTotalNumberDesserts = (desserts) => {
+  let totalDesserts = 0
+  const arrayOfDesserts = Object.keys(desserts)
+  arrayOfDesserts.forEach(i => {
+      totalDesserts += desserts[i]
+  })
+  return totalDesserts
 }
