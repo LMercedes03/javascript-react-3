@@ -1,4 +1,4 @@
-// 
+//
 // File: Order.js
 // Auth: Martin Burolla
 // Date: 10/19/2022
@@ -10,6 +10,19 @@
 //
 
 import { getPriceForDrink, getPriceForFood, getPriceForDessert } from './App.Config';
+
+/**
+ * @param {*} drinks 
+ * @returns An array of objects that the customer has ordered.
+ *  [
+      { 
+        item: 'tea', 
+        qty: 1, 
+        price: 2, 
+        subTotal: 2
+      }
+    ] 
+ */
 
 export const buildOrder = (drinks) => {
   let total = 0
@@ -39,8 +52,21 @@ export const buildOrder = (drinks) => {
   }
 }
 
+/**
+ * @param {*} foods 
+ * @returns An array of objects that the customer has ordered.
+ *  [
+      { 
+        item: 'tea', 
+        qty: 1, 
+        price: 2, 
+        subTotal: 2
+      }
+    ] 
+ */
+
 export const buildFoodOrder = (foods) => {
-  let total = 0
+  let foodTotal = 0
   let arrayOfFoods = Object.keys(foods)
 
   const arrayOfFoodObjects = arrayOfFoods.map(i => {
@@ -51,7 +77,7 @@ export const buildFoodOrder = (foods) => {
   })
 
   const allItems = arrayOfFoodObjects.map(i => {
-      total += i.qty * getPriceForFood(i.item)
+    foodTotal += i.qty * getPriceForFood(i.item)
       return {
           ...i,
           price: getPriceForFood(i.item),
@@ -59,16 +85,29 @@ export const buildFoodOrder = (foods) => {
       }
   })
 
-  const order = allItems.filter(i => i.qty > 0)
+  const foodOrder = allItems.filter(i => i.qty > 0)
 
   return {
-      order,
-      total
+    foodOrder,
+    foodTotal
   }
 }
 
+/**
+ * @param {*} desserts 
+ * @returns An array of objects that the customer has ordered.
+ *  [
+      { 
+        item: 'tea', 
+        qty: 1, 
+        price: 2, 
+        subTotal: 2
+      }
+    ] 
+ */
+
 export const buildDessertOrder = (desserts) => {
-  let total = 0
+  let dessertTotal = 0
   let arrayOfDesserts = Object.keys(desserts)
 
   const arrayOfDessertObjects = arrayOfDesserts.map(i => {
@@ -79,7 +118,7 @@ export const buildDessertOrder = (desserts) => {
   })
 
   const allItems = arrayOfDessertObjects.map(i => {
-      total += i.qty * getPriceForDessert(i.item)
+      dessertTotal += i.qty * getPriceForDessert(i.item)
       return {
           ...i,
           price: getPriceForDessert(i.item),
@@ -87,11 +126,11 @@ export const buildDessertOrder = (desserts) => {
       }
   })
 
-  const order = allItems.filter(i => i.qty > 0)
+  const dessertOrder = allItems.filter(i => i.qty > 0)
 
   return {
-      order,
-      total
+      dessertOrder,
+      dessertTotal
   }
 }
 
@@ -105,7 +144,7 @@ export const calcTotalForAllOrders = (orders) => {
 }
 
 /**
-* @param {} drinks 
+* @param {} drinks
 * @returns The total number of drinks the customer has ordered.
 */
 export const getTotalNumberDrinks = (drinks) => {
@@ -117,6 +156,10 @@ export const getTotalNumberDrinks = (drinks) => {
   return totalDrinks
 }
 
+/**
+* @param {} foods
+* @returns The total number of foods the customer has ordered.
+*/
 export const getTotalNumberFoods = (foods) => {
   let totalFoods = 0
   const arrayOfFoods = Object.keys(foods)
@@ -126,6 +169,10 @@ export const getTotalNumberFoods = (foods) => {
   return totalFoods
 }
 
+/**
+* @param {} desserts
+* @returns The total number of desserts the customer has ordered.
+*/
 export const getTotalNumberDesserts = (desserts) => {
   let totalDesserts = 0
   const arrayOfDesserts = Object.keys(desserts)
